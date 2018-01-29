@@ -151,3 +151,27 @@ $(document).on("click", ".btn-delete-todo", function() {
     updateTodoUI();
   });
 });
+//mark all as done
+$(document).on("click", "#btn-mark-all", function() {
+  var listId = $("#input-create-todo").attr("list-id");
+  $.ajax({
+    url: "https://todo-js-be.herokuapp.com/todo_lists/"+listId+"/todos",
+    method: "GET",
+    headers: {"access-token": getCookie("accessToken"), "client": getCookie("client"), "uid": getCookie("uId")}
+  }).done(function(data, textStatus, jqXHR) {
+    for(var i = 0; i < data.length; i++) {
+      var todoId = data[i].id;
+      var todoStatus = {done: true};
+      $.ajax({
+        url: "https://todo-js-be.herokuapp.com/todo_lists/"+listId+"/todos/"+todoId,
+        method: "PATCH",
+        headers: {"access-token": getCookie("accessToken"), "client": getCookie("client"), "uid": getCookie("uId")},
+        contentType : 'application/json',
+        data: JSON.stringify(todoStatus)
+      }).done(function(data, textStatus, jqXHR) {
+        //update todo ui
+        updateTodoUI();
+      });
+    }
+  })
+});
