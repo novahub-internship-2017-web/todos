@@ -3,7 +3,7 @@
 
 
 function openNav() {
-    document.getElementById("mySidenav").style.width = "300px";
+    document.getElementById("mySidenav").style.width = "330px";
 }
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
@@ -82,3 +82,14 @@ function updateUI() {
     $('#mySidenav').load('./snippet/slide-nav.html');
   }
 }
+
+/*
+ function getInfoUser() {
+   return {
+     uid: getCookie("uId"),
+     client: getCookie("client");,
+     accessToken: getCookie("accessToken");
+   }
+ }
+
+*/
