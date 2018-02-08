@@ -1,4 +1,6 @@
 $(document).on("click", "#sign-in-btn", function(){
+  var form = $('#form-sign-in');
+  form.validate();
   if ($("#form-sign-in").valid()) {
     event.preventDefault();
     var email = $('#inputEmail').val();
