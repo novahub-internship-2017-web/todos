@@ -6,7 +6,7 @@ $(document).on("click", "#sign-in-btn", function(){
     var email = $('#inputEmail').val();
     var password = $('#inputPassword').val();
     $.ajax({
-      url: "http://herokutuan.herokuapp.com/auth/sign_in",
+      url: "https://herokutuan.herokuapp.com/auth/sign_in",
       method: "POST",
       data: {email: email, password: password},
       beforeSend: function() {
