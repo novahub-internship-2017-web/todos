@@ -23,7 +23,7 @@ function loadTodoList() {
         headers: {"access-token": getCookie("accessToken"), "client": getCookie("client"), "uid": getCookie("uId")}
     }).done(function (data, textStatus, jqXHR) {
         for (var i = 0; i < data.length; i++) {
-            $('.shared-todo-list-group').append('<div class="todo-list"><a href="#" class="title-todo-list" list-id="' + data[i].id + '">' + data[i].name + '</a><a href="#" class="delete-todo-list" list-id="' + data[i].id + '"><i class="far fa-trash-alt"></i></a><a href="#" class="share-todo-list" list-id="' + data[i].id + '"><i class="fas fa-share"></i></a><a href="#" class="edit-todo-list" list-id="' + data[i].id + '"><i class="far fa-edit"></i></a></div>');
+            $('.shared-todo-list-group').append('<div class="todo-list"><a href="#" class="title-todo-list" list-id="' + data[i].id + '">' + data[i].name + '</a></div>');
         }
     });
 }
@@ -219,4 +219,17 @@ $(document).on("click", "#btn-mark-all", function () {
             });
         }
     })
+});
+
+//search todo list
+$(document).on('keyup', '#search-box', function () {
+    var keyWord = $(this).val();
+    $(".todo-list").each(function () {
+        var titleTodoList = $(this).children(".title-todo-list").text();
+        if (titleTodoList.indexOf(keyWord) < 0) {
+            $(this).hide();
+        } else {
+            $(this).show();
+        }
+    });
 });

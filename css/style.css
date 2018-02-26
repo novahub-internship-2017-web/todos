@@ -198,8 +198,7 @@ label.error {
 /*shared task list*/
 
 .shared-todo-list-group .todo-list .title-todo-list {
-  width: 180px;
-  display: inline-block;
+  display: block;
   text-decoration: none;
   font-size: 18px;
   color: #818181;
@@ -210,50 +209,14 @@ label.error {
   color: #f1f1f1;
   cursor: pointer;
 }
-
-.shared-todo-list-group .todo-list .edit-todo-list {
-  padding: 8px;
-  float: right;
-  display: inline-block;
-  text-decoration: none;
-  font-size: 18px;
-  color: #818181;
-  transition: 0.3s;
+#search-box{
+    padding: 8px;
+    width: 270px;
+    height: 40px;
+    margin: auto;
+    display: block;
 }
 
-.shared-todo-list-group .todo-list .edit-todo-list:hover {
-  color: #f1f1f1;
-  cursor: pointer;
-}
-
-.shared-todo-list-group .todo-list .delete-todo-list {
-  padding: 8px;
-  float: right;
-  display: inline-block;
-  text-decoration: none;
-  font-size: 18px;
-  color: #818181;
-  transition: 0.3s;
-}
-
-.shared-todo-list-group .todo-list .delete-todo-list:hover {
-  color: #f1f1f1;
-  cursor: pointer;
-}
-.shared-todo-list-group .todo-list .share-todo-list {
-  padding: 8px;
-  float: right;
-  display: inline-block;
-  text-decoration: none;
-  font-size: 18px;
-  color: #818181;
-  transition: 0.3s;
-}
-
-.shared-todo-list-group .todo-list .share-todo-list:hover {
-  color: #f1f1f1;
-  cursor: pointer;
-}
 
 .shared-todo-list-group .spinner {
   margin: auto;
