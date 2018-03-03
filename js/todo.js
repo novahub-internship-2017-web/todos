@@ -220,16 +220,3 @@ $(document).on("click", "#btn-mark-all", function () {
         }
     })
 });
-
-//search todo list
-$(document).on('keyup', '#search-box', function () {
-    var keyWord = $(this).val();
-    $(".todo-list").each(function () {
-        var titleTodoList = $(this).children(".title-todo-list").text();
-        if (titleTodoList.indexOf(keyWord) < 0) {
-            $(this).hide();
-        } else {
-            $(this).show();
-        }
-    });
-});

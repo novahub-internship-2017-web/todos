@@ -1,228 +1,239 @@
 h1 {
-  text-align: center;
+    text-align: center;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 form {
-  max-width: 500px;
-  width: auto;
-  margin: auto;
+    max-width: 500px;
+    width: auto;
+    margin: auto;
 }
+
 label.error {
-  width: 100%;
-  margin-top: .25rem;
-  font-size: 80%;
-  color: #dc3545;
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #dc3545;
 }
 
 .todo-item {
-  position: relative;
-  padding: 10px 25px;
-  border-bottom: 1px solid #ddd;
+    position: relative;
+    padding: 10px 25px;
+    border-bottom: 1px solid #ddd;
 }
 
 .todo-item p {
-  margin-bottom: 0px;
+    margin-bottom: 0px;
 }
 
 .form-check-label, .form-check-input {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .btn-delete-todo {
-  position: absolute;
-  right: 25px;
-  top: 10px;
+    position: absolute;
+    right: 25px;
+    top: 10px;
 }
 
 .btn-delete-todo:hover {
-  position: absolute;
-  right: 25px;
-  top: 10px;
-  color: red;
-  transition: 0.3s;
-  cursor: pointer;
+    position: absolute;
+    right: 25px;
+    top: 10px;
+    color: red;
+    transition: 0.3s;
+    cursor: pointer;
 }
 
 .loading {
-  width: 250px;
-  height: 250px;
-  margin: auto;
+    position: relative;
 }
-
+img{
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
 .sidenav {
-  height: 100%;
-  /* 100% Full-height */
-  width: 0;
-  /* 0 width - change this with JavaScript */
-  position: fixed;
-  /* Stay in place */
-  z-index: 1;
-  /* Stay on top */
-  top: 0;
-  /* Stay at the top */
-  left: 0;
-  background-color: #111;
-  /* Black*/
-  overflow-x: hidden;
-  /* Disable horizontal scroll */
-  padding-top: 60px;
-  /* Place content 60px from the top */
-  transition: 0.5s;
-  /* 0.5 second transition effect to slide in the sidenav */
+    height: 100%;
+    /* 100% Full-height */
+    width: 0;
+    /* 0 width - change this with JavaScript */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Stay on top */
+    top: 0;
+    /* Stay at the top */
+    left: 0;
+    background-color: #111;
+    /* Black*/
+    overflow-x: hidden;
+    /* Disable horizontal scroll */
+    padding-top: 60px;
+    /* Place content 60px from the top */
+    transition: 0.5s;
+    /* 0.5 second transition effect to slide in the sidenav */
 }
 
 /* The navigation menu links */
 
 .sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 18px;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
 }
 
 /* When you mouse over the navigation links, change their color */
 
 .sidenav a:hover {
-  color: #f1f1f1;
+    color: #f1f1f1;
 }
 
 .sidenav p {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 18px;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
 }
 
 /* When you mouse over the navigation links, change their color */
 
 .sidenav p:hover {
-  color: #f1f1f1;
-  cursor: pointer;
+    color: #f1f1f1;
+    cursor: pointer;
 }
 
 /* Position and style the close button (top right corner) */
 
 .sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 
 @media screen and (max-height: 450px) {
-  .sidenav {
-    padding-top: 15px;
-  }
-  .sidenav a {
-    font-size: 18px;
-  }
-}
+    .sidenav {
+        padding-top: 15px;
+    }
 
+    .sidenav a {
+        font-size: 18px;
+    }
+}
 
 /*task list*/
 
 .todo-list-group .todo-list .title-todo-list {
-  width: 180px;
-  display: inline-block;
-  text-decoration: none;
-  font-size: 18px;
-  color: #818181;
-  transition: 0.3s;
+    width: 180px;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 18px;
+    color: #818181;
+    transition: 0.3s;
 }
 
 .todo-list-group .todo-list .title-todo-list:hover {
-  color: #f1f1f1;
-  cursor: pointer;
+    color: #f1f1f1;
+    cursor: pointer;
 }
 
 .todo-list-group .todo-list .edit-todo-list {
-  padding: 8px;
-  float: right;
-  display: inline-block;
-  text-decoration: none;
-  font-size: 18px;
-  color: #818181;
-  transition: 0.3s;
+    padding: 8px;
+    float: right;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 18px;
+    color: #818181;
+    transition: 0.3s;
 }
 
 .todo-list-group .todo-list .edit-todo-list:hover {
-  color: #f1f1f1;
-  cursor: pointer;
+    color: #f1f1f1;
+    cursor: pointer;
 }
 
 .todo-list-group .todo-list .delete-todo-list {
-  padding: 8px;
-  float: right;
-  display: inline-block;
-  text-decoration: none;
-  font-size: 18px;
-  color: #818181;
-  transition: 0.3s;
+    padding: 8px;
+    float: right;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 18px;
+    color: #818181;
+    transition: 0.3s;
 }
 
 .todo-list-group .todo-list .delete-todo-list:hover {
-  color: #f1f1f1;
-  cursor: pointer;
+    color: #f1f1f1;
+    cursor: pointer;
 }
+
 .todo-list-group .todo-list .share-todo-list {
-  padding: 8px;
-  float: right;
-  display: inline-block;
-  text-decoration: none;
-  font-size: 18px;
-  color: #818181;
-  transition: 0.3s;
+    padding: 8px;
+    float: right;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 18px;
+    color: #818181;
+    transition: 0.3s;
 }
 
 .todo-list-group .todo-list .share-todo-list:hover {
-  color: #f1f1f1;
-  cursor: pointer;
+    color: #f1f1f1;
+    cursor: pointer;
 }
 
 .todo-list-group .spinner {
-  margin: auto;
-  width: 50px;
-  height: 50px;
-  font-size: 30px;
-  color: white;
-  display: block;
+    margin: auto;
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    color: white;
+    display: block;
 }
 
 /*shared task list*/
 
 .shared-todo-list-group .todo-list .title-todo-list {
-  display: block;
-  text-decoration: none;
-  font-size: 18px;
-  color: #818181;
-  transition: 0.3s;
+    display: block;
+    text-decoration: none;
+    font-size: 18px;
+    color: #818181;
+    transition: 0.3s;
 }
 
 .shared-todo-list-group .todo-list .title-todo-list:hover {
-  color: #f1f1f1;
-  cursor: pointer;
+    color: #f1f1f1;
+    cursor: pointer;
 }
-#search-box{
+
+#search-box {
     padding: 8px;
     width: 270px;
     height: 40px;
-    margin: auto;
+    margin-bottom: 10px;
     display: block;
 }
 
-
 .shared-todo-list-group .spinner {
-  margin: auto;
-  width: 50px;
-  height: 50px;
-  font-size: 30px;
-  color: white;
-  display: block;
+    margin: auto;
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    color: white;
+    display: block;
 }

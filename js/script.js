@@ -1,6 +1,24 @@
 //check authentication then update UI
 updateUI();
 
+function checkAuthentication() {
+    var accessToken = getCookie("accessToken");
+    var client = getCookie("client");
+    var uId = getCookie("uId");
+    return !(accessToken === "" || client === "" || uId === "");
+}
+
+function updateUI() {
+    if (checkAuthentication()) {
+        $('#mySidenav').load('./snippet/slide-nav-auth.html', function () {
+            $("#user-email").append(" " + getCookie("uId"));
+            loadTodoList();
+        });
+        $('#modal-group').load('./snippet/modal.html');
+    } else {
+        $('#mySidenav').load('./snippet/slide-nav.html');
+    }
+}
 
 function openNav() {
     document.getElementById("mySidenav").style.width = "330px";
@@ -34,6 +52,107 @@ function loadSignOutPage(event) {
     });
 }
 
+var allTaskList = [];
+var correctResult = [];
+function loadManagementPage(event) {
+    $('#content').load('./snippet/management.html', function () {
+        showLoading();
+        allTaskList = [];
+        //load own task list
+        $.ajax({
+            url: "https://herokutuan.herokuapp.com/task_lists",
+            method: "GET",
+            headers: {"access-token": getCookie("accessToken"), "client": getCookie("client"), "uid": getCookie("uId")}
+        }).done(function (data, textStatus, jqXHR) {
+            var uId = getCookie("uId");
+            for (var i = 0; i < data.length; i++) {
+                allTaskList.push(data[i]);
+                allTaskList[allTaskList.length - 1].user = uId;
+            }
+            //load shared task list
+            $.ajax({
+                url: "https://herokutuan.herokuapp.com/shared",
+                method: "GET",
+                headers: {
+                    "access-token": getCookie("accessToken"),
+                    "client": getCookie("client"),
+                    "uid": getCookie("uId")
+                }
+            }).done(function (data, textStatus, jqXHR) {
+                var sharedTaskList = data;
+                //load users to get username
+                $.ajax({
+                    url: "https://herokutuan.herokuapp.com/users",
+                    method: "GET",
+                    headers: {
+                        "access-token": getCookie("accessToken"),
+                        "client": getCookie("client"),
+                        "uid": getCookie("uId")
+                    }
+                }).done(function (data, textStatus, jqXHR) {
+                    for (var i = 0; i < sharedTaskList.length; i++) {
+                        allTaskList.push(sharedTaskList[i]);
+                        var shareUser = "";
+                        for (var j = 0; j < data.length; j++) {
+                            if (data[j].id === sharedTaskList[i].user_id) {
+                                shareUser = data[j].email;
+                                break;
+                            }
+                        }
+                        allTaskList[allTaskList.length - 1].user = shareUser;
+                        allTaskList[allTaskList.length - 1].share_count = '';
+                        allTaskList[allTaskList.length - 1].todo_count = '';
+                        allTaskList[allTaskList.length - 1].done_count = '';
+                    }
+                    //show all task list
+                    correctResult = allTaskList.slice();
+                    showTaskList(correctResult, 1);
+                    makePagination(correctResult);
+                });
+            });
+        });
+    });
+}
+
+//search task list
+$(document).on('keyup', '#search-box', function () {
+    var keyWord = $(this).val();
+    correctResult = [];
+    for (var taskList of allTaskList) {
+        if (taskList.name.indexOf(keyWord) >= 0) {
+            correctResult.push(taskList);
+        }
+    }
+    showTaskList(correctResult, 1);
+    makePagination(correctResult);
+});
+
+//show task list and make pagination
+function makePagination(taskLists) {
+    var number = 5;
+    var numberPages = Math.ceil(taskLists.length / number);
+    $(".pagination").html("");
+    for (var i = 1; i <= numberPages; i++) {
+        $(".pagination").append('<li class="page-item"><a class="page-link" href="#">' + i + '</a></li>');
+    }
+}
+
+function showTaskList(taskLists, pageNumber) {
+    var number = 5;
+    var numberPages = Math.ceil(taskLists.length / number);
+    $('table tbody').html("");
+    for (var k = (pageNumber - 1) * 5; (k < pageNumber * 5) && (taskLists[k] !== undefined); k++) {
+        $('table tbody').append('<tr>' + '<td>' + taskLists[k].name + '</td>' + '<td>' + taskLists[k].user + '</td>' + '<td>' + taskLists[k].share_count + '</td>' + '<td>' + taskLists[k].todo_count + '</td>' + '<td>' + taskLists[k].done_count + '</td>' + '</tr>');
+    }
+}
+
+//change page by clicking button
+$(document).on("click", ".page-link", function (event) {
+    event.preventDefault();
+    var pageNumber = $(this).text();
+    showTaskList(correctResult, pageNumber);
+});
+
 function setCookie(name, value) {
     var date = new Date();
     date.setTime(date.getTime() + (1000 * 60 * 60 * 24 * 7));
@@ -60,29 +179,6 @@ function getCookie(name) {
         return cookie;
     } else {
         return "";
-    }
-}
-
-function checkAuthentication() {
-    var accessToken = getCookie("accessToken");
-    var client = getCookie("client");
-    var uId = getCookie("uId");
-    if (accessToken == "" || client == "" || uId == "") {
-        return false;
-    } else {
-        return true;
-    }
-}
-
-function updateUI() {
-    if (checkAuthentication()) {
-        $('#mySidenav').load('./snippet/slide-nav-auth.html', function () {
-            $("#user-email").append(" " + getCookie("uId"));
-            loadTodoList();
-        });
-        $('#modal-group').load('./snippet/modal.html');
-    } else {
-        $('#mySidenav').load('./snippet/slide-nav.html');
     }
 }
 
