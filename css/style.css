@@ -139,7 +139,7 @@ img{
 /*task list*/
 
 .todo-list-group .todo-list .title-todo-list {
-    width: 180px;
+    width: 300px;
     display: inline-block;
     text-decoration: none;
     font-size: 18px;
@@ -148,13 +148,12 @@ img{
 }
 
 .todo-list-group .todo-list .title-todo-list:hover {
-    color: #f1f1f1;
+    color: #1f1f1f;
     cursor: pointer;
 }
 
 .todo-list-group .todo-list .edit-todo-list {
     padding: 8px;
-    float: right;
     display: inline-block;
     text-decoration: none;
     font-size: 18px;
@@ -169,7 +168,6 @@ img{
 
 .todo-list-group .todo-list .delete-todo-list {
     padding: 8px;
-    float: right;
     display: inline-block;
     text-decoration: none;
     font-size: 18px;
@@ -178,13 +176,12 @@ img{
 }
 
 .todo-list-group .todo-list .delete-todo-list:hover {
-    color: #f1f1f1;
+    color: #1f1f1f;
     cursor: pointer;
 }
 
 .todo-list-group .todo-list .share-todo-list {
     padding: 8px;
-    float: right;
     display: inline-block;
     text-decoration: none;
     font-size: 18px;
@@ -193,7 +190,7 @@ img{
 }
 
 .todo-list-group .todo-list .share-todo-list:hover {
-    color: #f1f1f1;
+    color: #1f1f1f;
     cursor: pointer;
 }
 
@@ -217,7 +214,7 @@ img{
 }
 
 .shared-todo-list-group .todo-list .title-todo-list:hover {
-    color: #f1f1f1;
+    color: #1f1f1f;
     cursor: pointer;
 }
 
@@ -236,4 +233,11 @@ img{
     font-size: 30px;
     color: white;
     display: block;
+}
+
+#search-box{
+    display: inline-block;
+}
+#number-item{
+    float: right;
 }

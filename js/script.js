@@ -42,6 +42,12 @@ function loadSignInPage(event) {
     $('#content').load('./snippet/sign-in.html');
 }
 
+function loadViewPage(event) {
+    $('#content').load('./snippet/view-task-list.html', function () {
+        loadTodoList();
+    });
+}
+
 function loadSignOutPage(event) {
     event.preventDefault();
     deleteCookie("uId", '');
@@ -54,6 +60,7 @@ function loadSignOutPage(event) {
 
 var allTaskList = [];
 var correctResult = [];
+var number = 5;
 function loadManagementPage(event) {
     $('#content').load('./snippet/management.html', function () {
         showLoading();
@@ -106,6 +113,7 @@ function loadManagementPage(event) {
                     }
                     //show all task list
                     correctResult = allTaskList.slice();
+                    number = 5;
                     showTaskList(correctResult, 1);
                     makePagination(correctResult);
                 });
@@ -116,10 +124,10 @@ function loadManagementPage(event) {
 
 //search task list
 $(document).on('keyup', '#search-box', function () {
-    var keyWord = $(this).val();
+    var keyWord = $(this).val().toLowerCase();
     correctResult = [];
     for (var taskList of allTaskList) {
-        if (taskList.name.indexOf(keyWord) >= 0) {
+        if (taskList.name.toLowerCase().indexOf(keyWord) >= 0) {
             correctResult.push(taskList);
         }
     }
@@ -129,19 +137,19 @@ $(document).on('keyup', '#search-box', function () {
 
 //show task list and make pagination
 function makePagination(taskLists) {
-    var number = 5;
     var numberPages = Math.ceil(taskLists.length / number);
     $(".pagination").html("");
-    for (var i = 1; i <= numberPages; i++) {
-        $(".pagination").append('<li class="page-item"><a class="page-link" href="#">' + i + '</a></li>');
+    if (taskLists.length > number) {
+        for (var i = 1; i <= numberPages; i++) {
+            $(".pagination").append('<li class="page-item"><a class="page-link" href="#">' + i + '</a></li>');
+        }
     }
 }
 
 function showTaskList(taskLists, pageNumber) {
-    var number = 5;
     var numberPages = Math.ceil(taskLists.length / number);
     $('table tbody').html("");
-    for (var k = (pageNumber - 1) * 5; (k < pageNumber * 5) && (taskLists[k] !== undefined); k++) {
+    for (var k = (pageNumber - 1) * number; (k < pageNumber * number) && (taskLists[k] !== undefined); k++) {
         $('table tbody').append('<tr>' + '<td>' + taskLists[k].name + '</td>' + '<td>' + taskLists[k].user + '</td>' + '<td>' + taskLists[k].share_count + '</td>' + '<td>' + taskLists[k].todo_count + '</td>' + '<td>' + taskLists[k].done_count + '</td>' + '</tr>');
     }
 }
@@ -151,6 +159,13 @@ $(document).on("click", ".page-link", function (event) {
     event.preventDefault();
     var pageNumber = $(this).text();
     showTaskList(correctResult, pageNumber);
+});
+
+//change number item on a page
+$(document).on("change", "#number-item", function () {
+    number = parseInt($(this).val());
+    showTaskList(correctResult, 1);
+    makePagination(correctResult);
 });
 
 function setCookie(name, value) {

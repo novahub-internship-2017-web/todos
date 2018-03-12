@@ -8,20 +8,24 @@ function loadTodoList() {
         method: "GET",
         headers: {"access-token": getCookie("accessToken"), "client": getCookie("client"), "uid": getCookie("uId")},
         beforeSend: function () {
-            $('.todo-list-group').html('<div class="spinner"><i class="fas fa-spinner fa-spin"></i></div>');
+            $('.todo-list-group').html('<div class="spinner"><i class="fas fa-spinner fa-spin" style="color:Tomato"></i></div>');
         }
     }).done(function (data, textStatus, jqXHR) {
         $('.todo-list-group').html("");
         for (var i = 0; i < data.length; i++) {
-            $('.todo-list-group').append('<div class="todo-list"><a href="#" class="title-todo-list" list-id="' + data[i].id + '">' + data[i].name + '</a><a href="#" class="delete-todo-list" list-id="' + data[i].id + '"><i class="far fa-trash-alt"></i></a><a href="#" class="share-todo-list" list-id="' + data[i].id + '"><i class="fas fa-share"></i></a><a href="#" class="edit-todo-list" list-id="' + data[i].id + '"><i class="far fa-edit"></i></a></div>');
+            $('.todo-list-group').append('<div class="todo-list"><a href="#" class="title-todo-list" list-id="' + data[i].id + '">' + data[i].name + '</a><a href="#" class="edit-todo-list" list-id="' + data[i].id + '"><i class="far fa-edit"></i></a><a href="#" class="share-todo-list" list-id="' + data[i].id + '"><i class="fas fa-share"></i></a><a href="#" class="delete-todo-list" list-id="' + data[i].id + '"><i class="far fa-trash-alt"></i></a></div>');
         }
     });
     //show shared task list
     $.ajax({
         url: "https://herokutuan.herokuapp.com/shared",
         method: "GET",
-        headers: {"access-token": getCookie("accessToken"), "client": getCookie("client"), "uid": getCookie("uId")}
+        headers: {"access-token": getCookie("accessToken"), "client": getCookie("client"), "uid": getCookie("uId")},
+        beforeSend: function () {
+            $('.shared-todo-list-group').html('<div class="spinner"><i class="fas fa-spinner fa-spin" style="color:Tomato"></i></div>');
+        }
     }).done(function (data, textStatus, jqXHR) {
+        $('.shared-todo-list-group').html("");
         for (var i = 0; i < data.length; i++) {
             $('.shared-todo-list-group').append('<div class="todo-list"><a href="#" class="title-todo-list" list-id="' + data[i].id + '">' + data[i].name + '</a></div>');
         }
